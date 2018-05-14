@@ -5,7 +5,7 @@ let gravity
 
 function setup() {
   createCanvas(500, 500);
-  star = loadImage('SS.png')
+  star = loadImage('starshooter.png')
 }
 
 function mousePressed() {
