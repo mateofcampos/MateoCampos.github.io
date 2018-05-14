@@ -1,7 +1,7 @@
 
 let stars = [];
 let star;
-let gravity
+let gravity;
 
 function setup() {
   createCanvas(500, 500);
