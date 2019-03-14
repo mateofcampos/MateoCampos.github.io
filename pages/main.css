@@ -1,22 +1,10 @@
-/* code to copy */
-
-/* ************ CSS shorthand ***************
-Note difference in declaring margin and padding values for body and h1.
-2 values: [padding top and bottom] [padding right and left]
-4 values: [top] [right] [bottom] [left]
-
-By setting the right and left values to auto in the body margin,
-the body will be centered on the page
-
-*/
-
 body {
   margin: 30px auto;
   max-width: 60%;
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
   padding: 30px 20px;
-  text-align: center;
+  font-family: 'Amaranth', sans-serif;
   background-color: #8ebde2;
 }
 
