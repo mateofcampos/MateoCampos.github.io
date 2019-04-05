@@ -8,8 +8,26 @@ body {
   background-color: #c697a8;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 90%;
+  background-color: #85b1f7;
+  text-align: center;
+}
+
+#header ul li {
+  width: 100px;
+  float: left;
+  margin-right:20px;
+  padding: 15px;
+  text-align: center;
+  list-style-type: none;
+  font-family: 'Amaranth', sans-serif;
+}
+
 h1 {
   padding: 20px 0px 10px 0px;
+  text-align: center;
 }
 
 /* This changes color and removes default underline in links  */
