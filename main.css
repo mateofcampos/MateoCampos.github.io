@@ -1,32 +1,38 @@
-/* code to copy */
-
-/* ************ CSS shorthand ***************
-Note difference in declaring margin and padding values for body and h1.
-2 values: [padding top and bottom] [padding right and left]
-4 values: [top] [right] [bottom] [left]
-
-By setting the right and left values to auto in the body margin,
-the body will be centered on the page
-
-*/
-
 body {
-  margin: 0px auto;
+  margin: 30px auto;
   max-width: 60%;
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
   padding: 30px 20px;
-  text-align: center;
+  font-family: 'Amaranth', sans-serif;
   background-color: #8ebde2;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 90%;
+  background-color: #85b1f7;
+  text-align: left;
+}
+
+#header ul li {
+  width: 100px;
+  float: left;
+  margin-right:20px;
+  padding: 15px;
+  text-align: center;
+  list-style-type: none;
+  font-family: 'Amaranth', sans-serif;
 }
 
 h1 {
   padding: 20px 0px 10px 0px;
+
 }
 
 /* This changes color and removes default underline in links  */
 a {
-color: #69CBBB;
+color: #702000;
 text-decoration: none;
 }
 
