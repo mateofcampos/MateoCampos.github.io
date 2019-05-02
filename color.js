@@ -1,106 +1,91 @@
-// P_1_2_1_01
-//
-// Generative Gestaltung – Creative Coding im Web
-// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
-// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
-// with contributions by Joey Lee and Niels Poldervaart
-// Copyright 2018
-//
-// http://www.generative-gestaltung.de
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/**
- * shows how to interpolate colors in different styles/ color modes
- *
- * MOUSE
- * left click          : new random color set
- * position x          : interpolation resolution
- * position y          : row count
- *
- * KEYS
- * 1-2                 : switch interpolation style
- * s                   : save png
- * c                   : save color palette
- */
 'use strict';
-//Variables
-var tileCountX = 2;
-var tileCountY = 10;
 
-var colorsLeft = [];
-var colorsRight = [];
-var colors = [];
+var formResolution = 15;
+var stepSize = 2;
+var distortionFactor = 1;
+var initRadius = 10;
+var centerX;
+var centerY;
+var x = [];
+var y = [];
 
-var interpolateShortest = true;
+var filled = false;
+var freeze = false;
 
 function setup() {
-  createCanvas(2000, 2000);
-  colorMode(HSB);
-  noStroke();
-  shakeColors();
+  createCanvas(windowWidth, windowHeight);
+
+  // init shape
+  centerX = width / 1;
+  centerY = height / 1;
+  var angle = radians(360 / formResolution);
+  for (var i = 0; i < formResolution; i++) {
+    x.push(cos(angle * i) * initRadius);
+    y.push(sin(angle * i) * initRadius);
+  }
+
+  stroke(0, 50);
+  strokeWeight(0.75);
+  background(255);
 }
 
-//Loops
 function draw() {
-  tileCountX = int(map(mouseX, 0, width, 2, 100));
-  tileCountY = int(map(mouseY, 0, height, 2, 10));
-  var tileWidth = width / tileCountX;
-  var tileHeight = height / tileCountY;
-  var interCol;
-  colors = [];
+  // floating towards mouse position
+  centerX += (mouseX - centerX) * 0.01;
+  centerY += (mouseY - centerY) * 0.01;
 
-  for (var gridY = 0; gridY < tileCountY; gridY++) {
-    var col1 = colorsLeft[gridY];
-    var col2 = colorsRight[gridY];
+  // calculate new points
+  for (var i = 0; i < formResolution; i++) {
+    x[i] += random(-stepSize, stepSize);
+    y[i] += random(-stepSize, stepSize);
+    // uncomment the following line to show position of the agents
+    // ellipse(x[i] + centerX, y[i] + centerY, 5, 5);
+  }
 
-    for (var gridX = 0; gridX < tileCountX; gridX++) {
-      var amount = map(gridX, 0, tileCountX - 1, 0, 1);
+  if (filled) {
+    fill(random(32));
+  } else {
+    noFill();
+  }
 
-      //Conditional Statements
-      if (interpolateShortest) {
-        // switch to rgb
-        colorMode(RGB);
-        interCol = lerpColor(col1, col2, amount);
-        // switch back
-        colorMode(HSB);
-      } else {
-        interCol = lerpColor(col1, col2, amount);
-      }
+  beginShape();
+  // first controlpoint
+  curveVertex(x[formResolution - 1] + centerX, y[formResolution - 1] + centerY);
 
-      fill(interCol);
+  // only these points are drawn
+  for (var i = 0; i < formResolution; i++) {
+    curveVertex(x[i] + centerX, y[i] + centerY);
+  }
+  curveVertex(x[0] + centerX, y[0] + centerY);
 
-      var posX = tileWidth * gridX;
-      var posY = tileHeight * gridY;
-      rect(posX, posY, tileWidth, tileHeight);
+  // end controlpoint
+  curveVertex(x[1] + centerX, y[1] + centerY);
+  endShape();
+}
 
-      // save color for potential ase export
-      colors.push(interCol);
-    }
+function mousePressed() {
+  // init shape on mouse position
+  centerX = mouseX;
+  centerY = mouseY;
+  var angle = radians(360 / formResolution);
+  var radius = initRadius * random(0.5, 1);
+  for (var i = 0; i < formResolution; i++) {
+    x[i] = cos(angle * i) * initRadius;
+    y[i] = sin(angle * i) * initRadius;
   }
 }
 
-function shakeColors() {
-  for (var i = 0; i < tileCountY; i++) {
-    colorsLeft[i] = color(random(0, 60), random(0, 100), 100);
-    colorsRight[i] = color(random(160, 190), 100, random(0, 100));
-  }
-}
-
-function mouseReleased() {
-  shakeColors();
-}
-
-function keyPressed() {
-  if (key == 'c' || key == 'C') writeFile([gd.ase.encode(colors)], gd.timestamp(), 'ase');
+function keyReleased() {
   if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
-  if (key == '1') interpolateShortest = true;
-  if (key == '2') interpolateShortest = false;
+  if (keyCode == DELETE || keyCode == BACKSPACE) background(255);
+  if (key == '1') filled = false;
+  if (key == '2') filled = true;
+
+  // pauze/play draw loop
+  if (key == 'f' || key == 'F') freeze = !freeze;
+  if (freeze) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
