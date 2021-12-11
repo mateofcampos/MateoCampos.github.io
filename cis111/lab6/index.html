@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+		Mateo Campos
+		CIS111 Lab06
+		Fahrenheit to Celsius temperature converter-->
+
+		<title>Mateo Campos</title>
+	</head>
+
+	<body>
+		<h1>Temperature Converter</h1>
+		<script>
+			"use strict";
+	
+			let temp1 = parseFloat(prompt("Input a Fahrenheit temperature"));
+			console.log("Fahrenheit" + temp1);
+
+
+			let temp2 = parseFloat(temp1 - 32) * 5 / 9;
+			console.log("Celsius" + temp2);
+
+			let view = "<p>Fahrenheit = " + temp1.toFixed(1) + "</p>";
+			console.log("view is" + view);
+			view = view + "<p>Celsius = " + temp2.toFixed(1) + "</p>";
+			console.log("view is" + view)
+
+			document.write(view);
+
+		</script>
+	<p>Coded by Mateo Campos</p>
+	</body>
+</html>
+
+<!--
+
+I looked at the modules and got some additional help making this assignment feel more doable! Thank you for the help today professor! I will be sure to look at the modules every weekend now!
+
+celsius = (fahrenheit - 32) * 5 / 9
+"use strict";
+//Use prompt to “Input a Fahrenheit temperature”, store in a variable (create a meaningful name).
+//Convert to Celsius, store in another variable (create a meaningful name)
+//Create a string with the html to display the output as shown below in paragraph tags.  Use toFixed(1) to display both temperatures with 1 decimal place.  
+//Use document.write to display the results on your html page
+-->
