@@ -18,7 +18,7 @@
 	padding: 15px;
 	text-align: center;
 	list-style-type: none;
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'DengXian', sans-serif;
 }
 
 
@@ -29,7 +29,7 @@
 	background-color: #f2dac1;
 	padding: 20px;
 	text-align: center;
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'DengXian', sans-serif;
 
 }
 
@@ -38,7 +38,7 @@
 	background-color: skyblue;
 	margin: 0 auto;
 	border-style: solid;
-	font-family: 'Amaranth', sans-serif; 
+	font-family: 'DengXian', sans-serif; 
 }
 
 @charset "UTF-8";
@@ -220,7 +220,7 @@ body {
   margin: 0;
   padding: 0;
   background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "DengXian", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5;
   color: #0a0a0a;
@@ -330,7 +330,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "DengXian", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   color: inherit;
