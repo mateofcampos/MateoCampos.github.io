@@ -5,13 +5,13 @@ body {
   line-height: 1.5;
   padding: 30px 20px;
   text-align: center;
-  background-color: #87db89;
+  background: linear-gradient(to left, #33cc33 0%, #ffffff 100%);
 }
 
 .container {
   margin: 0 auto;
   max-width: 90%;
-  background-color: #87db89;
+  background: none;
   text-align: left;
 }
 
